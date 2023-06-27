@@ -88,7 +88,7 @@ def form():
         db.session.commit()
 
         animales_parecidos = Animal_Encontrados.query.filter(Animal_Encontrados.raza==animal_perdido.raza, Animal_Encontrados.color==animal_perdido.color).all()
-        print(len(animales_parecidos))
+        
 
         
         if animales_parecidos:
