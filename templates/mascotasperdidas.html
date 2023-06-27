@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <title>Registrar Animal Perdido</title>
+</head>
+
+<body>
+  <style>
+    #map {
+      height: 180px;
+    }
+  </style>
+  <div id="map"></div>
+  <script>
+    var map = L.map('map').setView([51.505, -0.09], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+  </script>
+
+  <h1>Registrar Animal Perdido</h1>
+  <form action="/mascotasperdidas" method="post">
+
+    <p><label for="nombre">Nombre:</label></p>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+    <p><label for="raza">Raza:</label></p>
+    <input type="text" id="raza" name="raza" required><br><br>
+    <p><label for="color">Color:</label></p>
+    <input type="text" id="color" name="color" required><br><br>
+    <p><label>Edad</label></p>
+    <select name="edad">
+      <option value="cachorro">Cachorro</option>
+      <option value="adulto">Adulto</option>
+    </select>
+    <p><label>Tamaño</label></p>
+    <select name="tamaño">
+      <option value="chico">chico</option>
+      <option value="mediano">mediano</option>
+      <option value="grande">grande</option>
+    </select>
+    <p><label for="ciudad">Ciudad:</label></p>
+    <input type="text" id="ciudad" name="ciudad" required><br><br>
+    <p><label for="barrio">Barrio:</label></p>
+    <input type="text" id="barrio" name="barrio" required><br><br>
+    <p><label for="telefono">Teléfono:</label></p>
+    <input type="number" id="telefono" name="telefono" required><br><br>
+    <p><label for="otras_caracteristicas">Otras Características:</label></p>
+    <input type="text" id="otras_caracteristicas" name="otras_caracteristicas" required><br><br>
+
+    <p>latitud</p>
+    <input type='hidden' name='latitud' id='latitud' />
+
+    <p>longitud</p>
+    <input type='hidden' name='longitud' id='longitud' />
+
+
+    <button>Guardar datos</button>
+
+
+
+    {%for mascota in mascotasPerdi %}
+    <div class="flex flex-row mb-5 max-w-sm rounded overflow-hidden shadow-lg">
+      <img class="w-full" src="/img/card-top.jpg" alt="Mascotas perdida">
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">{{mascota.raza}}</div>
+        <p class="text-gray-700 text-base">
+          {{mascota.color}}
+        </p>
+      </div>
+      <div class="px-6 pt-4 pb-2">
+        <span
+          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{mascota.edad}}</span>
+        <span
+          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{mascota.tamaño}}</span>
+        <span
+          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{mascota.ciudad}}</span>
+        <span
+          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{mascota.barrio}}</span>
+        <span
+          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{mascota.otras_caracteristicas}}</span>
+        <span
+          class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{mascota.telefono}}</span>
+      </div>
+    </div>
+    {%endfor%}
+
+
+
+
+
+</body>
+
+</html>

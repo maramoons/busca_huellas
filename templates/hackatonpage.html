@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datos de la mascota perdida</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+</head>
+
+<body>
+  <style>
+    #map {
+      height: 180px;
+    }
+  </style>
+  <div id="map"></div>
+
+
+
+  <!-- <form action="/mascotasencontradas" method="post">
+        <p>Raza del animal</p>
+        <input type = 'text' name='RazaAnimal' id = 'RazaAnimal' required/>
+
+        <p>Color del animal</p>
+        <input type = 'text' name = 'ColorAnimal' id = 'ColorAnimal' required/>
+
+        <h4>Edad</h4>
+        <select name="edad" required>
+            <option value="cachorro">Cachorro</option>
+            <option value="adulto">Adulto</option>
+        </select>
+
+        <h4>tamanho</h4>
+        <select name="tamanho" required>
+            <option value="chico">chico</option>
+            <option value="mediano">mediano</option>
+            <option value="grande">grande</option>
+        </select>
+
+        <p>Ciudad donde encontraron el animal</p>
+        <input type = 'text' name = 'CiudadEncontrado' id = 'CiudadEncontrado' required/>
+
+        <p>Barrio donde encontraron el animal</p>
+        <input type = 'text' name = 'BarrioEncontrado' id = 'BarrioEncontrado' required/>
+
+        <p>Otras caracteristicas del animal</p>
+        <input type = 'text' name = 'CaractAnimalEncontr' id = 'CaractAnimalEncontr' required/>
+
+        <p>Tu numero de telefono</p>
+        <input type = 'text' name = 'TelefonoRescatista' id = 'TelefonoRescatista' required />
+
+        <button>Enviar datos</button>
+
+        
+        {%for mascota in mascotasEnco %}
+        <div class="flex flex-row mb-5 max-w-sm rounded overflow-hidden shadow-lg">
+            <img class="w-full" src="/img/card-top.jpg" alt="Mascotas encontrada">
+            <div class="px-6 py-4">
+              <div class="font-bold text-xl mb-2">{{mascota.raza}}</div>
+              <p class="text-gray-700 text-base">
+                {{mascota.color}}
+              </p>
+            </div>
+            <div class="px-6 pt-4 pb-2">
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{mascota.edad}}</span>
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{mascota.tamanho}}</span>
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{mascota.ciudad}}</span>
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{mascota.barrio}}</span>
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{mascota.otrascaract}}</span>
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">{{mascota.telefono}}</span>
+            </div>
+          </div>
+          {%endfor%}
+
+        <!-- {%for mascotas in mascotasEnco%}
+
+            <p>Raza de la mascota</p>
+    
+            <p>{{mascotas.raza}}</p>
+
+            <p>Color de la mascota</p>
+            <p>{{mascotas.color}}</p>
+
+    
+        {%endfor%} -->
+
+
+
+
+  <!-- </form> -->
+
+  <script>
+    var map = L.map('map').setView([51.505, -0.09], 13);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>' }).addTo(map);
+
+
+  </script>
+</body>
+
+</html>
