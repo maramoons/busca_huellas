@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+
+<body>
+    <!-- FORMULARIO -->
+    <!-- NAV -->
+    <body class="bg-[#CAFCD8]">
+        <nav id="header" class="w-full border-b-2 border-black">
+            <div class="w-full flex flex-row justify-between px-4 mt-0 py-2">
+                <div class="order-2 md:order-1 flex flex-row space-x-2">
+                    <img class="h-9 w-9" src="https://cdn.discordapp.com/attachments/1122904767878930544/1122916041652191382/2.png">
+                  <a class="tracking-wide no-underline hover:no-underline font-bold text-[#1A4E8D] text-4xl subpixel-antialiased" href="#">
+                      BUSCA HUELLA
+                  </a>
+                </div>
+                <div class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1" id="menu">
+                    <nav>
+                        <ul class="md:flex items-center text-base text-[#1A4E8D] font-mono pt-4 md:pt-0">
+                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Home</a></li>
+                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">About Us</a></li>
+                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Casos de Éxito</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </nav>
+
+        <!-- ENCABEZADO -->
+        <div class="max-w-md mx-auto my-6 py-4 px-8 bg-white shadow-lg rounded-lg">          
+            <div class="flex justify-between space-x-4 mx-8">
+                <div> <img src="img/logo2.png" alt="logo" class="mb-4 h-16"> </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-[#1A4E8D]"> ANIMAL PERDIDO</h1>
+                    <h2 class="mt-2 line-clamp-14 text-sm leading-6 text-gray-600 font-bold">CARGAR DATOS DEL ANIMAL</h2>
+                </div>
+            </div>
+
+            <!-- CARGA DE DATOS -->
+            <div>
+                <form>
+                    <div>
+                        <label for="nombre" class="block text-gray-700 font-bold mb-2">Nombre del animal:</label>
+                        <input type="text" id="nombre" name="nombre" class="border rounded-lg py-2 px-3 w-full">
+                    </div>
+                    <div class="mb-4">
+                        <label for="raza" class="block text-gray-700 font-bold mb-2">Raza:</label>
+                        <input type="text" id="raza" name="raza" class="border rounded-lg py-2 px-3 w-full">
+                    </div>
+                    <div class="mb-4">
+                        <label for="color" class="block text-gray-700 font-bold mb-2">Color:</label>
+                        <input type="text" id="color" name="color" class="border rounded-lg py-2 px-3 w-full">
+                    </div>
+                    <div class="mb-4">
+                        <label for="edad" class="block text-gray-700 font-bold mb-2">Edad:</label>
+                        <select id="edad" name="edad" class="border rounded-lg py-2 px-3 w-full">
+                            <option value="cachorro">Cachorro</option>
+                            <option value="adulto">Adulto</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="caracteristicas" class="block text-gray-700 font-bold mb-2">Otras Características
+                            (manchas, rayas, etc):</label>
+                        <textarea id="caracteristicas" name="caracteristicas"
+                            class="border rounded-lg py-2 px-3 w-full"></textarea>
+                    </div>
+                    <div class="mb-4">
+                        <label for="ciudad" class="block text-gray-700 font-bold mb-2">Ciudad:</label>
+                        <input type="text" id="ciudad" name="ciudad" class="border rounded-lg py-2 px-3 w-full">
+                    </div>
+                    <div class="mb-4">
+                        <label for="barrio" class="block text-gray-700 font-bold mb-2">Barrio:</label>
+                        <input type="text" id="barrio" name="barrio" class="border rounded-lg py-2 px-3 w-full">
+                    </div>
+                    <div class="mb-4">
+                        <label for="telefono" class="block text-gray-700 font-bold mb-2">Teléfono:</label>
+                        <input type="text" id="telefono" name="telefono" class="border rounded-lg py-2 px-3 w-full">
+                    </div>
+
+                    <!-- GEOLOCALIZACION -->
+                    <style>
+                        #map {
+                            height: 180px;
+                        }
+                    </style>
+
+                    <div id="map"></div>
+
+                    <script>
+                        var map = L.map('map').setView([-25.3, -57.5], 10);
+
+                        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 19,
+                            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                        }).addTo(map);
+                    </script>
+
+                    <!-- CARGAR EL FORMULARIO -->
+                    <button type="submit"
+                        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-6">Enviar</button>
+                    <a class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-6"
+                        href="/">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </body>
+
+</html>
