@@ -108,7 +108,7 @@ def form():
     else:
             MascoPerdi = Animales_Perdidos.query.all()
 
-            return render_template('mascotasperdidas.html', mascotasPerdi = MascoPerdi)
+            return render_template('animales_perdidos.html', mascotasPerdi = MascoPerdi)
 
 
 @app.route('/mascotasencontradas', methods = ['GET', 'POST'])
@@ -136,7 +136,7 @@ def formulario():
     else:
         MascoEnco = Animal_Encontrados.query.all()
         
-        return render_template('mascotasencontradas.html', mascotasEnco = MascoEnco)
+        return render_template('animales_encontrados.html', mascotasEnco = MascoEnco)
 
 
 with app.app_context():
