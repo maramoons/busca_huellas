@@ -336,12 +336,14 @@
       // shadowAnchor: [22, 94]
     });
 
+    console.log(ubicacionesJson.animales)
 
     ubicacionesJson.animales.forEach((animal) => {
-      const marker = L.marker([animal.latitud, animal.longitud], { icon: myIcon }).setLatLng([animal.latitud, animal.longitud]).addTo(map);
+      console.log(animal.raza)
+      const marker = L.marker([animal.latitud, animal.longtitud], { icon: myIcon }).setLatLng([animal.latitud, animal.longtitud]).addTo(map);
     });
 
-
+    console.log('hola');
 
 
 
