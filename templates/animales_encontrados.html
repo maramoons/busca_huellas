@@ -16,21 +16,27 @@
 <body>
     <!-- FORMULARIO -->
     <!-- NAV -->
+
     <body class="bg-[#CAFCD8]">
         <nav id="header" class="w-full border-b-2 border-black">
             <div class="w-full flex flex-row justify-between px-4 mt-0 py-2">
                 <div class="order-2 md:order-1 flex flex-row space-x-2">
-                    <img class="h-9 w-9" src="https://cdn.discordapp.com/attachments/1122904767878930544/1122916041652191382/2.png">
-                  <a class="tracking-wide no-underline hover:no-underline font-bold text-[#1A4E8D] text-4xl subpixel-antialiased" href="#">
-                      BUSCA HUELLA
-                  </a>
+                    <img class="h-9 w-9"
+                        src="https://cdn.discordapp.com/attachments/1122904767878930544/1122916041652191382/2.png">
+                    <a class="tracking-wide no-underline hover:no-underline font-bold text-[#1A4E8D] text-4xl subpixel-antialiased"
+                        href="#">
+                        BUSCA HUELLA
+                    </a>
                 </div>
                 <div class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1" id="menu">
                     <nav>
                         <ul class="md:flex items-center text-base text-[#1A4E8D] font-mono pt-4 md:pt-0">
-                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Home</a></li>
-                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">About Us</a></li>
-                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Casos de Éxito</a></li>
+                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+                                    href="#">Home</a></li>
+                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+                                    href="#">About Us</a></li>
+                            <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4"
+                                    href="#">Casos de Éxito</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -38,12 +44,13 @@
         </nav>
 
         <!-- ENCABEZADO -->
-        <div class="max-w-md mx-auto my-6 py-4 px-8 bg-white shadow-lg rounded-lg">          
+        <div class="max-w-md mx-auto my-6 py-4 px-8 bg-white shadow-lg rounded-lg">
             <div class="flex justify-between space-x-4 mx-4">
                 <div> <img src="img/logo2.png" alt="logo" class="mb-4 h-16"> </div>
                 <div>
                     <h1 class="text-2xl font-bold text-[#1A4E8D]">ANIMAL ENCONTRADO</h1>
-                    <h2 class="mt-2 line-clamp-14 text-sm leading-6 text-gray-600 font-bold">CARGAR DATOS DEL ANIMAL</h2>
+                    <h2 class="mt-2 line-clamp-14 text-sm leading-6 text-gray-600 font-bold">CARGAR DATOS DEL ANIMAL
+                    </h2>
                 </div>
             </div>
 
@@ -52,7 +59,8 @@
                 <form>
                     <div>
                         <label for="nombre" class="block text-gray-700 font-bold mb-2">Nombre del animal:</label>
-                        <p class = "text-gray-500 text-sm mb-2">En caso de que tenga collar, de lo contrario dejar en blanco</p>
+                        <p class="text-gray-500 text-sm mb-2">En caso de que tenga collar, de lo contrario dejar en
+                            blanco</p>
                         <input type="text" id="nombre" name="nombre" class="border rounded-lg py-2 px-3 w-full">
                     </div>
                     <div class="mb-4">
@@ -68,6 +76,14 @@
                         <select id="edad" name="edad" class="border rounded-lg py-2 px-3 w-full">
                             <option value="cachorro">Cachorro</option>
                             <option value="adulto">Adulto</option>
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="tamanho" class="block text-gray-700 font-bold mb-2">Tamaño:</label>
+                        <select id="tamanho" name="tamanho" class="border rounded-lg py-2 px-3 w-full">
+                            <option value="cachorro">Chico</option>
+                            <option value="adulto">Mediano</option>
+                            <option value="adulto">Grande</option>
                         </select>
                     </div>
                     <div class="mb-4">
@@ -92,19 +108,54 @@
                     <!-- GEOLOCALIZACION -->
                     <style>
                         #map {
-                            height: 180px;
+                            width: 400px;
+                            height: 400px;
                         }
                     </style>
 
                     <div id="map"></div>
 
-                    <script>
+                    <!-- <script>
                         var map = L.map('map').setView([-25.3, -57.5], 10);
 
                         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                             maxZoom: 19,
                             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                         }).addTo(map);
+                    </script> -->
+
+
+
+                    <script>var map = L.map('map').setView([-25.28646, -57.647], 13);
+
+                        let latitud = document.querySelector('.latitud');
+                        let longitud = document.querySelector('.longitud');
+                        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 19,
+                            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                        }).addTo(map);
+
+                        function onMapClick(e) {
+                            let marker;
+
+                            map.on('click', function (e) {
+                                console.log(e.latlng);
+                                if (marker)
+                                    map.removeLayer(marker);
+                                marker = L.marker(e.latlng).addTo(map);
+                                latitud.setAttribute('value', e.latlng.lat)
+                                longitud.setAttribute('value', e.latlng.lng)
+
+
+                            })
+
+
+                        }
+
+                        map.on('click', onMapClick());
+
+
+
                     </script>
 
                     <!-- CARGAR EL FORMULARIO -->
