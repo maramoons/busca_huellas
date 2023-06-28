@@ -99,7 +99,7 @@ def form():
             message = client.messages.create(
                 from_='+14849699516',
                 body='puto',
-                to=f'+595{animal_perdido.telefono}'
+                to=f'+595975635224'
             )
             return render_template('listamascotasperdidas.html', animales_parecidos = animales_parecidos)
 
@@ -132,7 +132,7 @@ def formulario():
         db.session.add(perro_encontrado)
         db.session.commit()
 
-        return "cargado a la db"
+        return render_template('/')
     else:
         MascoEnco = Animal_Encontrados.query.all()
         
@@ -142,4 +142,6 @@ def formulario():
 with app.app_context():
     db.create_all()
 
+if __name__ == '__main__':
+    app.run (debug=True)
 

@@ -56,20 +56,21 @@
 
             <!-- CARGA DE DATOS -->
             <div>
-                <form>
-                    <div>
+                <form action="/mascotasencontradas" method="post">
+                    <!-- <div>
                         <label for="nombre" class="block text-gray-700 font-bold mb-2">Nombre del animal:</label>
                         <p class="text-gray-500 text-sm mb-2">En caso de que tenga collar, de lo contrario dejar en
                             blanco</p>
                         <input type="text" id="nombre" name="nombre" class="border rounded-lg py-2 px-3 w-full">
-                    </div>
+                    </div> -->
                     <div class="mb-4">
                         <label for="raza" class="block text-gray-700 font-bold mb-2">Raza:</label>
-                        <input type="text" id="raza" name="raza" class="border rounded-lg py-2 px-3 w-full">
+                        <input type="text" id="RazaAnimal" name="RazaAnimal" class="border rounded-lg py-2 px-3 w-full">
                     </div>
                     <div class="mb-4">
                         <label for="color" class="block text-gray-700 font-bold mb-2">Color:</label>
-                        <input type="text" id="color" name="color" class="border rounded-lg py-2 px-3 w-full">
+                        <input type="text" id="ColorAnimal" name="ColorAnimal"
+                            class="border rounded-lg py-2 px-3 w-full">
                     </div>
                     <div class="mb-4">
                         <label for="edad" class="block text-gray-700 font-bold mb-2">Edad:</label>
@@ -89,20 +90,30 @@
                     <div class="mb-4">
                         <label for="caracteristicas" class="block text-gray-700 font-bold mb-2">Otras Características
                             (manchas, rayas, etc):</label>
-                        <textarea id="caracteristicas" name="caracteristicas"
+                        <textarea id="CaractAnimalEncontr" name="CaractAnimalEncontr"
                             class="border rounded-lg py-2 px-3 w-full"></textarea>
                     </div>
                     <div class="mb-4">
                         <label for="ciudad" class="block text-gray-700 font-bold mb-2">Ciudad:</label>
-                        <input type="text" id="ciudad" name="ciudad" class="border rounded-lg py-2 px-3 w-full">
+                        <input type="text" id="CiudadEncontrado" name="CiudadEncontrado"
+                            class="border rounded-lg py-2 px-3 w-full">
                     </div>
                     <div class="mb-4">
                         <label for="barrio" class="block text-gray-700 font-bold mb-2">Barrio:</label>
-                        <input type="text" id="barrio" name="barrio" class="border rounded-lg py-2 px-3 w-full">
+                        <input type="text" id="BarrioEncontrado" name="BarrioEncontrado"
+                            class="border rounded-lg py-2 px-3 w-full">
                     </div>
                     <div class="mb-4">
                         <label for="telefono" class="block text-gray-700 font-bold mb-2">Teléfono:</label>
-                        <input type="text" id="telefono" name="telefono" class="border rounded-lg py-2 px-3 w-full">
+                        <input type="text" id="TelefonoRescatista" name="TelefonoRescatista"
+                            class="border rounded-lg py-2 px-3 w-full">
+
+
+                        <input type='hidden' name='latitud' class='latitud' />
+
+                        <input type='hidden' name='longitud' class='longitud' />
+
+                        <input type="hidden" class="user_coords" name="ubicacion">
                     </div>
 
                     <!-- GEOLOCALIZACION -->
