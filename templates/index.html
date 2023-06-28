@@ -32,7 +32,7 @@
 
   <style>
     #map {
-      height: 200px;
+      height: 400px;
     }
 
 
@@ -88,6 +88,8 @@
       color: #000;
       /*Set to match the Tailwind colour you want the active one to be */
     }
+
+    /*for popup */
   </style>
 
 </head>
@@ -131,20 +133,18 @@
           un animal
         </a>
       </div>
-      <div id="map" class="w-3/4 h-96 border-2 border-black m-4>
-
-
+      <div id="map" class="w-3/4 h-96 border-2 border-black m-4">
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
-<section class=" bg-white">
-        <div class="flex flex-row items-center">
-          <p class="font-mono text-left text-5xl text-[#1A4E8D] ml-10 mr-10 animate-pulse italic subpixel-antialiased">
-            Sigue las huellas, encuentra a tu compañero.</p>
-          <img class="h-72 w-72 mr-32" src="https://i.gifer.com/7Jfa.gif">
-        </div>
+  <section class="bg-white">
+    <div class="flex flex-row items-center">
+      <p class="font-mono text-left text-5xl text-[#1A4E8D] ml-10 mr-10 animate-pulse italic subpixel-antialiased">
+        Sigue las huellas, encuentra a tu compañero.</p>
+      <img class="h-72 w-72 mr-32" src="https://i.gifer.com/7Jfa.gif">
+    </div>
   </section>
 
   <section class="bg-[#CAFCD8]">
@@ -158,7 +158,7 @@
         <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           <article class="flex flex-col items-start justify-between">
             <div class="relative w-full">
-              <img src="img/encuentro3.jpg" alt=""
+              <img src="static/encuentro3.jpg" alt=""
                 class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[2/2]">
               <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
             </div>
@@ -184,7 +184,7 @@
 
           <article class="flex flex-col items-start justify-between">
             <div class="relative w-full">
-              <img src="img/encuentro1.jpg" alt=""
+              <img src="static/encuentro1.jpg" alt=""
                 class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[2/2]">
               <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
             </div>
@@ -209,7 +209,7 @@
           <!-- More posts... -->
           <article class="flex flex-col items-start justify-between">
             <div class="relative w-full">
-              <img src="img/encuentro2.jpg" alt=""
+              <img src="static/encuentro2.jpg" alt=""
                 class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[2/2]">
               <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
             </div>
@@ -329,7 +329,7 @@
     }).addTo(map);
 
     var myIcon = L.icon({
-      iconUrl: '/static/paw.png',
+      iconUrl: '/static/img/paw.png',
       iconSize: [15],
       iconAnchor: [10, 10],
       // popupAnchor: [-3, -76],
@@ -339,10 +339,21 @@
     });
 
     console.log(ubicacionesJson.animales)
-
+    var customOptions =
+    {
+      'maxWidth': '400',
+      'width': '200',
+      'className': 'popupCustom'
+    }
     ubicacionesJson.animales.forEach((animal) => {
       console.log(animal.raza)
-      const marker = L.marker([animal.latitud, animal.longtitud], { icon: myIcon }).setLatLng([animal.latitud, animal.longtitud]).addTo(map);
+      const marker = L.marker([animal.latitud, animal.longtitud], { icon: myIcon }).setLatLng([animal.latitud, animal.longtitud])
+        .bindPopup(
+          `
+            <h2>Raza: </h2>${animal.raza}<br />
+            <h2>Color: </h2>${animal.color} <br /> 
+            <h2>Telefono: </h2>${animal.telefono}`, customOptions
+        ).addTo(map);
     });
 
     console.log('hola');

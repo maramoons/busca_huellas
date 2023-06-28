@@ -60,7 +60,7 @@ def index():
             'latitud':animal.latitud,
             'longtitud':animal.longitud})
 
-    return render_template('index.html', animales_encontrados = json.dumps(diccionario_de_animales))
+    return render_template('index2.html', animales_encontrados = json.dumps(diccionario_de_animales))
 
 
 
@@ -92,18 +92,21 @@ def form():
 
         
         if animales_parecidos:
-            account_sid = 'AC2736df3dbf65cf3450d6c44f1f55aeeb'
-            auth_token = 'bc68581f30acf9b5068e8293dd26cbaa'
-            client = Client(account_sid, auth_token)
+            try:
+                account_sid = 'AC2736df3dbf65cf3450d6c44f1f55aeeb'
+                auth_token = 'bc68581f30acf9b5068e8293dd26cbaa'
+                client = Client(account_sid, auth_token)
 
-            message = client.messages.create(
-                from_='+14849699516',
-                body='puto',
-                to=f'+595975635224'
-            )
+                message = client.messages.create(
+                    from_='+14849699516',
+                    body='puto',
+                    to=f'+595975635224'
+                )
+            except:
+                print("No se pudo enviar mensaje")
             return render_template('listamascotasperdidas.html', animales_parecidos = animales_parecidos)
 
-        return "Datos ingresados exitosamente"
+        return redirect('/')
 
     else:
             MascoPerdi = Animales_Perdidos.query.all()
@@ -114,6 +117,8 @@ def form():
 @app.route('/mascotasencontradas', methods = ['GET', 'POST'])
 def formulario():
     # todos_las_tareas_del_usuario = app.query.filter_by().first()
+
+    print("Informacion recibida",request)
     if (request.method == 'POST'):
         raza = request.form['RazaAnimal']
         color = request.form['ColorAnimal']
@@ -132,7 +137,8 @@ def formulario():
         db.session.add(perro_encontrado)
         db.session.commit()
 
-        return render_template('/')
+        # return render_template('index.html')
+        return redirect('/')
     else:
         MascoEnco = Animal_Encontrados.query.all()
         
